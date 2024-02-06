@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import SocialMediaItem from "./components/SocialMediaItem";
+import { AOSInit } from "./AOS";
+import { raleway } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,123 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={raleway.className}>
+        <AOSInit />
+        <nav className="flex justify-between items-center px-5 h-[10dvh] bg-black text-white shadow-xl">
+          <div>
+            {" "}
+            <Image
+              src="/mercatoandcompany-logo.svg"
+              alt="logo"
+              width={300}
+              height={1000}
+              className="w-auto h-auto"
+            />
+          </div>
+          <div className=" gap-10 hidden md:flex text-2xl">
+            <a href="/shop">Shop</a>
+            <a href="/about-us">About us</a>
+            <a href="/our-stores">Our Store</a>
+            <a href="/contact-us">Contact Us</a>
+          </div>
+        </nav>
+        {children}
+        <footer className="flex flex-col gap-5 bg-black text-white p-5 text-2xl">
+          <div>
+            A <span className="font-bold text-[#B4DCC8] ">fresh</span> stop in
+            your everyday journey.
+          </div>
+
+          <span className="bg-white h-[1px] w-full"></span>
+
+          <div className="flex flex-col md:flex-row lg:justify-center lg:py-5 lg:px-10 w-full gap-5 lg:gap-10">
+            <div className="md:flex items-center hidden md:w-[20%] lg:w-[15%]">
+              <Image
+                src="/logo.webp"
+                alt="logo"
+                width={1000}
+                height={1000}
+                className="w-full"
+              />
+            </div>
+
+            <div className="flex flex-row items-center md:flex-col justify-around text-lg">
+              <div className="w-[150px] lg:w-[230px] text-center py-5 md:py-2 bg-[#486C5C] rounded-full">
+                <a href="#">Our Story</a>
+              </div>
+              <div className="w-[150px] lg:w-[230px] text-center py-5 md:py-2 bg-[#486C5C] rounded-full">
+                <a href="#">Find a Store</a>
+              </div>
+              <div className="w-[150px] lg:w-[230px] text-center py-5 md:py-2 bg-[#486C5C] rounded-full">
+                <a href="#">Get in Touch</a>
+              </div>
+            </div>
+
+            <span className="bg-white w-[1px]"></span>
+
+            <div className="flex flex-col justify-evenly items-center lg:text-lg">
+              <p className="text-center text-sm md:text-base">
+                Don't miss out on our news and discounts
+              </p>
+              <div className="flex mb-5 w-full">
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  placeholder="Email"
+                  className="w-[87%] rounded-l-3xl text-sm p-2 lg:p-4 text-black"
+                />
+                <button className="w-[13%] bg-[#486C5C] text-sm p-2 rounded-r-3xl lg:p-3">
+                  ↑
+                </button>
+              </div>
+
+              <div className="flex gap-5 justify-evenly">
+                <SocialMediaItem image={"/tik-tok.png"} />
+                <SocialMediaItem image={"/tik-tok.png"} />
+                <SocialMediaItem image={"/tik-tok.png"} />
+                <SocialMediaItem image={"/tik-tok.png"} />
+                <SocialMediaItem image={"/tik-tok.png"} />
+              </div>
+            </div>
+
+            <span className="bg-white w-[1px] h-auto"></span>
+
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <p className="md:text-base lg:text-2xl">Mercato & Company</p>
+                <Image src="/logo.webp" alt="logo" width={32} height={32} />
+              </div>
+
+              <div className="flex gap-5 pl-4">
+                <ul className="list-disc text-xs xl:text-base">
+                  <li className="underline">Home</li>
+                  <li className="underline">Categories</li>
+                  <li className="underline">Best Sellers</li>
+                  <li className="underline">Shop</li>
+                </ul>
+                <ul className="list-disc text-xs xl:text-base">
+                  <li className="underline">About Us</li>
+                  <li className="underline">Our Mission</li>
+                  <li className="underline">Our Story</li>
+                  <li className="underline">Our Store</li>
+                </ul>
+              </div>
+
+              <div className="text-[12px] mt-5">
+                <p>
+                  Copyright 2024. Mercato & Company LLC. All Rights are
+                  Reserved.
+                </p>
+
+                <a href="#" className="text-[#B4DCC8]">
+                  Privacy Policy
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }
